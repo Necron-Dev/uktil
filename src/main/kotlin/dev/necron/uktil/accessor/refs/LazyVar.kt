@@ -6,7 +6,6 @@ import dev.necron.uktil.accessor.Ref
 import dev.necron.uktil.accessor.value
 import dev.necron.uktil.annotation.UktilInternal
 
-@UktilInternal
 data class LazyVar<T>(
     @property:UktilInternal @JvmField var setInitializer: (T) -> Ref<T>,
     @property:UktilInternal @JvmField var getInitializer: () -> Ref<T>,

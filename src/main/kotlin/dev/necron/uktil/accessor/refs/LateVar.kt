@@ -6,7 +6,6 @@ import dev.necron.uktil.accessor.Ref
 import dev.necron.uktil.accessor.value
 import dev.necron.uktil.annotation.UktilInternal
 
-@UktilInternal
 data class LateVar<T>(
     @property:UktilInternal @JvmField var initializer: (T) -> Ref<T>,
     @property:UktilInternal @JvmField var wrapped: Ref<T>? = null,

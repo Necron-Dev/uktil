@@ -8,7 +8,6 @@ import dev.necron.uktil.accessor.outs.inBox
 import dev.necron.uktil.accessor.value
 import dev.necron.uktil.annotation.UktilInternal
 
-@UktilInternal
 data class LateVal<T>(
     @property:UktilInternal @JvmField var initializer: (T) -> Out<T>,
     @property:UktilInternal @JvmField var wrapped: Out<T>? = null,

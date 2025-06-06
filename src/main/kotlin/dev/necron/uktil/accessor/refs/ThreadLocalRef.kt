@@ -5,7 +5,6 @@ package dev.necron.uktil.accessor.refs
 import dev.necron.uktil.accessor.Ref
 import dev.necron.uktil.annotation.UktilInternal
 
-@UktilInternal
 data class ThreadLocalRef<T>(
     @property:UktilInternal @JvmField val holder: ThreadLocal<T>,
 ) : Ref<T> {

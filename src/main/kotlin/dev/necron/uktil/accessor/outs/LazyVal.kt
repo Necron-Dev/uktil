@@ -6,7 +6,6 @@ import dev.necron.uktil.accessor.Out
 import dev.necron.uktil.accessor.value
 import dev.necron.uktil.annotation.UktilInternal
 
-@UktilInternal
 data class LazyVal<out T>(
     @property:UktilInternal @JvmField var initializer: () -> Out<@UnsafeVariance T>,
     @property:UktilInternal @JvmField var wrapped: Out<@UnsafeVariance T>? = null,

@@ -11,7 +11,6 @@ import dev.necron.uktil.functional.eval
 import dev.necron.uktil.functional.once
 import dev.necron.uktil.functional.onceUnary
 
-@UktilInternal
 data class Trigger<out T, TV>(
     @property:UktilInternal @JvmField val function: (TV) -> T,
     @property:UktilInternal @JvmField val versionGetter: () -> TV,

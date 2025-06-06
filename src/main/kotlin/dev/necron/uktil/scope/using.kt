@@ -9,23 +9,27 @@ import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 
-@UktilInternal
 @JvmInline
 value class UsingScopeContext(
-    @JvmField val resourceList: ArrayDeque<AutoCloseable>,
+    @property:UktilInternal @JvmField val resourceList: ArrayDeque<AutoCloseable>,
 ) {
+    @OptIn(UktilInternal::class)
     inline fun <T : AutoCloseable> using(resource: T) = resource.also(resourceList::add)
 
+    @OptIn(UktilInternal::class)
     inline fun using(crossinline cleanup: () -> Unit) {
         resourceList += AutoCloseable { cleanup() }
     }
 
     inline val <T : AutoCloseable> T.using get() = using(this)
 
+    @OptIn(UktilInternal::class)
     inline infix fun <T> T.using(crossinline cleanup: (T) -> Unit) = also { this@UsingScopeContext.using { cleanup(this) } }
 
+    @OptIn(UktilInternal::class)
     inline fun <T : AutoCloseable> usingPre(resource: T) = resource.also(resourceList::addFirst)
 
+    @OptIn(UktilInternal::class)
     inline fun usingPre(crossinline cleanup: () -> Unit) {
         resourceList.addFirst(AutoCloseable { cleanup() })
     }
@@ -39,7 +43,6 @@ data class ResourceClosureException(
     @JvmField val failures: List<Pair<Any?, Exception>>,
 ) : Exception()
 
-@OptIn(UktilInternal::class)
 inline fun <R> usingScope(function: UsingScopeContext.() -> R): R {
     contract {
         callsInPlace(function, InvocationKind.EXACTLY_ONCE)
