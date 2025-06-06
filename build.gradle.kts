@@ -4,13 +4,14 @@ plugins {
 }
 
 group = "dev.necron"
-version = "0.1.2"
+version = "0.2.0"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-reflect:2.0.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.8.1")
 }
 
