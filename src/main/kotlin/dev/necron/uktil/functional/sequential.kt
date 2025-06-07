@@ -44,7 +44,7 @@ data class SequentialFunctionHolder(
 }
 
 @OptIn(UktilInternal::class)
-inline operator fun <R> (() -> R)?.plus(noinline other: () -> R): () -> R {
+inline operator fun <R1, R2> (() -> R1)?.plus(noinline other: () -> R2): () -> R2 {
     return (
         this as? SequentialFunctionHolder
             ?: SequentialFunctionHolder(listOfNotNull(this?.let { { this() } }))

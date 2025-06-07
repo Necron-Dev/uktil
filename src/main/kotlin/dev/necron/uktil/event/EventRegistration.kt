@@ -10,10 +10,7 @@ interface EventRegistration {
         val handler: EventHandler<*>
     }
 
-    val eventEntries: List<Entry>
-        get() = buildRegisterEventEntries(OperationEventRegistry(mutableListOf())) {
-            registerEvents()
-        }
+    val eventEntries: List<Entry> get() = buildEventEntries(registerEvents)
 
     val registerEvents: EventRegistry.() -> Unit get() = {}
 }
@@ -68,15 +65,6 @@ class OperationEventRegistry(
 
 inline fun buildEventEntries(function: OperationEventRegistry.() -> Unit): List<Entry> {
     return mutableListOf<Entry>().also { function(OperationEventRegistry(it)) }
-}
-
-inline fun EventRegistration.buildRegisterEventEntries(
-    registry: EventRegistry,
-    function: OperationEventRegistry.() -> Unit,
-): List<Entry> {
-    return mutableListOf<Entry>()
-        .also { function(OperationEventRegistry(it)) }
-        .also { registerEventEntries(registry) }
 }
 
 inline fun EventRegistration.registerEventEntries(registry: EventRegistry) {

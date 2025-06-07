@@ -52,7 +52,7 @@ inline infix fun <T> T?.or(function: () -> T): T {
     return this ?: function()
 }
 
-inline infix fun <T> T?.and(function: () -> T): T? {
+inline infix fun <I, T> I?.and(function: () -> T): T? {
     contract {
         callsInPlace(function, InvocationKind.AT_MOST_ONCE)
     }

@@ -75,7 +75,7 @@ inline fun convertDoubleArrayToRGB(vararg rgb: Double) = convertDoubleArrayToARG
 
 inline fun convertDoubleArrayToFFRGB(vararg rgb: Double) = convertDoubleArrayToARGB(rgb[0], rgb[1], rgb[2], 1.0)
 
-inline val DoubleArray.normalizeColor get() = DoubleArray(size) { maxOf(0.0, minOf(1.0, this[it])) }
+inline val DoubleArray.normalizeColor get() = DoubleArray(size) { get(it).coerceIn(0.0..1.0) }
 
 inline infix fun DoubleArray.blendColor(rgbaSrc: DoubleArray): DoubleArray {
     val (srcR, srcG, srcB, srcA) = rgbaSrc
