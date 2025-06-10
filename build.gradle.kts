@@ -4,8 +4,8 @@ plugins {
     id("maven-publish")
 }
 
-group = "yqloss"
-version = "0.4.0"
+group = "net.yqloss"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
